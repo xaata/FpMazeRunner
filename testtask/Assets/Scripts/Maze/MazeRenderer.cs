@@ -22,7 +22,9 @@ public class MazeRenderer : MonoBehaviour
     [SerializeField]
     private Transform finishPrefab = null;
 
-    // Start is called before the first frame update
+    public int mazeWidth { get => width; set => width = value; }
+    public int mazeHeight { get => height; set => height = value; }
+
     void Start()
     {
         var maze = MazeGenerator.Generate(width, height);
@@ -34,7 +36,7 @@ public class MazeRenderer : MonoBehaviour
         var floor = Instantiate(floorPrefab, transform);
         floor.localScale = new Vector3(width, 1, height);
         var finish = Instantiate(finishPrefab, transform);
-        finish.localPosition = new Vector3(width / 2, -0.1f, -height / 2 - 0.4f);
+        finish.localPosition = new Vector3(width / 2, -0.1f, -height / 2);
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
@@ -76,10 +78,5 @@ public class MazeRenderer : MonoBehaviour
                 }
             }
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
